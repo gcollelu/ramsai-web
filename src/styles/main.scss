@@ -1,0 +1,85 @@
+@import '~bulma';
+@import 'index';
+
+.recipe-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.generate-button{
+    margin-top: 50px;
+}
+
+.card.is-wide {
+  width: 400px;
+
+  @media (min-width: 856px) {
+    width: 400px;
+  }
+  
+  @media (min-width: 1100px) {
+    width: 700px;
+  }
+}
+
+.card.has-text-centered {
+  .card-header,
+  .card-content,
+  .card-footer {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+}
+
+
+.list-group > .list-group-item {
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+    &.is-primary {
+      background-color: hsl(171, 100%, 41%);
+      color: #fff;
+    }
+    &.is-info {
+      background-color: hsl(217, 71%, 53%);
+      color: #fff;
+    }
+    &.is-success {
+      background-color: hsl(141, 71%, 48%);
+      color: #fff;
+    }
+    &.is-warning {
+      background-color: hsl(48, 100%, 67%);
+    }
+    &.is-danger {
+      background-color: hsl(348, 100%, 61%);
+      color: #fff;
+    }
+  }
+
+  .is-success-bc {
+    cursor: pointer;
+    background-color: $success !important;
+  }
+
+  .is-danger-bc {
+    cursor: pointer;
+    background-color: $danger !important;
+  }
+
+.is-rounded {
+  border-radius: 10px !important;
+}

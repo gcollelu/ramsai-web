@@ -1,0 +1,29 @@
+{
+  "name": "homevans",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack",
+    "deploy-firebase": "firebase deploy",
+    "deploy": "cd dist && cp ../now.json . && now && now alias && now rm vroom -y --safe"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-boiler": "^0.2.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bulma": "^0.7.2",
+    "extract-emoji": "^1.0.2",
+    "firebase": "^5.8.0",
+    "moji-translate": "^1.0.8",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-hot-loader": "^4.6.3",
+    "react-router-dom": "^4.3.1"
+  },
+  "private": true
+}
