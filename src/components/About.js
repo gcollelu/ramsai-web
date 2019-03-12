@@ -1,6 +1,9 @@
 import React from 'react';
-
-
+import logo from '../assets/logo.png';
+import steps from '../assets/steps.png';
+import ingredients from '../assets/ingredients.png';
+import loss from '../assets/loss.png';
+import gan from '../assets/gan.png';
 
 export default () => (
   <section className="section">
@@ -9,7 +12,7 @@ export default () => (
       <div className="content">
         <h1 align="center">
           <br />
-            <a href="https://ramsai.now.sh"><img src="/src/assets/logo.png" alt="VRoom" width="100" /></a>
+            <a href="https://ramsai.now.sh"><img src={logo} alt="Ramsai" width="100" /></a>
           <br />
         </h1>
         <h4 align="center">A React webapp to serve our generated recipes. </h4>
@@ -56,10 +59,10 @@ export default () => (
 
         <div className="columns is-vcentered">
           <div className="column">
-            <img src="/src/assets/steps.png" alt="steps" width="250" />
+            <img src={steps} alt="steps" width="250" />
           </div>
           <div className="column">
-            <img src="/src/assets/ingredients.png" alt="steps" width="250" />
+            <img src={ingredients} alt="ingredients" width="250" />
           </div>
         </div>
 
@@ -95,7 +98,7 @@ export default () => (
 
         <h1 align="center">
           <br />
-          <img src="/src/assets/gan.png" alt="VRoom" width="300" />
+          <img src={gan} alt="gan" width="300" />
           <br />
         </h1>
 
@@ -112,7 +115,7 @@ export default () => (
         <h4 id="after1000epochs">After 1000 Epochs</h4>
 
         <p align="center">
-          <img src="/src/assets/loss.png" alt="VRoom" width="300" />
+          <img src={loss} alt="loss" width="300" />
         </p>
 
         <h4 id="future-improvements">Future Improvements</h4>
