@@ -25,7 +25,7 @@ export default class Home extends React.Component {
   }
 
   generateRecipe = () => {
-    this.setState({generateDisabled: true});
+    this.setState({generateDisabled: true, recipe: null});
     window.scrollTo(0, 0);
     const config = {
       headers: {"Access-Control-Allow-Origin": "*"}
