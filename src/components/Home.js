@@ -2,13 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import translate from 'moji-translate';
 import {all , extractEmoji} from 'extract-emoji';
+import { ScaleLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 export default class Home extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      recipe : null
+      recipe : null,
+      generateDisabled: false
     }
   }
 
@@ -17,11 +25,15 @@ export default class Home extends React.Component {
   }
 
   generateRecipe = () => {
+    this.setState({generateDisabled: true});
+    window.scrollTo(0, 0);
     const config = {
       headers: {"Access-Control-Allow-Origin": "*"}
     }
     axios.get("https://ramsai.herokuapp.com/predict", config)
-          .then(response => {this.setState({recipe: response.data.prediction}); window.scrollTo(0, 0);})
+          .then(response => {
+            this.setState({recipe: response.data.prediction, generateDisabled: false}); 
+          })
           .catch(error => console.log(error) );
   }
   capitalizeFirstLetter = (string) =>  string.charAt(0).toUpperCase() + string.slice(1);
@@ -78,12 +90,21 @@ export default class Home extends React.Component {
   render() {
     const {recipe} = this.state
     return (
-      <div className="container has-text-centered">
-        <button className="button is-danger generate-button" onClick={this.generateRecipe}>Generate Recipe</button>
-        <div className=" recipe-container">
-          {recipe !== null && recipe !== undefined && this.renderRecipe(recipe) }
+        <div className="container has-text-centered">
+          <button className="button is-danger generate-button" onClick={this.generateRecipe} disabled={this.state.generateDisabled} >Generate Recipe</button>
+          <div className='sweet-loading'>
+            <ScaleLoader
+              css={override}
+              sizeUnit={"px"}
+              size={150}
+              color={'#FF3860'}
+              loading={this.state.generateDisabled}
+            />
+          </div>
+          <div className=" recipe-container">
+            {recipe !== null && recipe !== undefined && this.renderRecipe(recipe) }
+          </div>
         </div>
-      </div>
     );
   }
 }
