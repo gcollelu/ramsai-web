@@ -4,6 +4,7 @@ import translate from 'moji-translate';
 import {all , extractEmoji} from 'extract-emoji';
 import { ScaleLoader } from 'react-spinners';
 import { css } from '@emotion/core';
+import * as db from '../db';
 
 const override = css`
     display: block;
@@ -24,7 +25,21 @@ export default class Home extends React.Component {
     this.generateRecipe();
   }
 
-  generateRecipe = () => {
+  generateRecipe = vote => {
+    var data = {
+      recipe: this.state.recipe,
+      vote: vote
+    };
+
+    if (vote === true){
+      data.vote = true;
+      db.createVote(data);
+    }
+    else if (vote === false){
+      data.vote = false;
+      db.createVote(data);
+    }
+
     this.setState({generateDisabled: true, recipe: null});
     window.scrollTo(0, 0);
     const config = {
@@ -69,12 +84,12 @@ export default class Home extends React.Component {
                         </div>
                         
                         <footer className="card-footer">
-                            <div onClick={() => this.generateRecipe()} className="card-footer-item is-danger-bc">
+                            <div onClick={() => this.generateRecipe(false)} className="card-footer-item is-danger-bc">
                                 <button className="button is-large is-danger">
                                     🤮👎
                                 </button>
                             </div>
-                            <div onClick={() => this.generateRecipe()} className="card-footer-item is-success-bc">
+                            <div onClick={() => this.generateRecipe(true)} className="card-footer-item is-success-bc">
                               <button className="button  is-large is-success">
                                   🤤👍
                               </button>

@@ -22,6 +22,8 @@ const firestore = firebase.firestore();
 // Global collections
 /** @type firebase.firestore.CollectionReference */
 export let users;
+/** @type firebase.firestore.CollectionReference */
+export let votes;
 
 export const getUser = () => auth.currentUser;
 
@@ -35,7 +37,6 @@ export const init = () => firestore.enablePersistence()
 })
 .then(new Promise((resolve) => {
   const unsubscribe = auth.onAuthStateChanged(() => {
-    console.log('Signed in:', !!auth.currentUser);
     unsubscribe();
     resolve();
   }, (err) => {
@@ -46,6 +47,7 @@ export const init = () => firestore.enablePersistence()
 }))
 .then(() => {
   users = firestore.collection('users');
+  votes = firestore.collection('votes');
 });
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -58,9 +60,5 @@ export const signIn = () => auth.signInWithPopup(googleProvider)
   else return window.location.pathname;
 });
 
-export const signOut = () => auth.signOut();
+export const createVote = (data) => votes.add(data);
 
-export const deleteProfile = () => {
-  const userId = getUser().id;
-  return users.doc(userId).delete();
-};
