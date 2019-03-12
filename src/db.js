@@ -6,12 +6,12 @@ import { decodeQuery } from './utils';
 
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyDg2_rQUOaiU3fJlPSOtOEv9cTJkG-aNgE',
-  authDomain: 'vroom-db.firebaseapp.com',
-  databaseURL: 'https://vroom-db.firebaseio.com',
-  projectId: 'vroom-db',
-  storageBucket: 'vroom-db.appspot.com',
-  messagingSenderId: '67269393820',
+  apiKey: "AIzaSyBcGAj_7smn3OuiXjxiPlX1nIxbu7663yQ",
+  authDomain: "ramsai-web.firebaseapp.com",
+  databaseURL: "https://ramsai-web.firebaseio.com",
+  projectId: "ramsai-web",
+  storageBucket: 'ramsai-web.appspot.com',
+  messagingSenderId: "978996784553",
 });
 
 
