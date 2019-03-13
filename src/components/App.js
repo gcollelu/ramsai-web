@@ -12,7 +12,6 @@ import {
 import Home from './Home';
 import About from './About';
 import ErrorBoundary from './ErrorBoundary';
-import Account from './Account';
 import Nav from './Nav';
 
 import * as db from '../db';
@@ -26,17 +25,12 @@ NavLink.defaultProps.activeClassName = 'is-active';
 
 const App = () => (
   <Router>
-    {/* <RouterToUrlQuery> */}
       <>
         <Nav/>
         <ErrorBoundary>
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/about" component={About}/>
-            <Route exact path="/logout" render={() => {
-              db.signOut().catch(console.error);
-              return <Redirect to="/"/>;
-            }}/>
             <Route render={() => { throw { code: 404 }; }}/>
           </Switch>
         </ErrorBoundary>
@@ -48,7 +42,6 @@ const App = () => (
           return null;
         }}/>
       </>
-    {/* </RouterToUrlQuery> */}
   </Router>
 );
 

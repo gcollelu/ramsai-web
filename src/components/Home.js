@@ -17,7 +17,8 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       recipe : null,
-      generateDisabled: false
+      generateDisabled: false,
+      ip: ""
     }
   }
 
@@ -28,17 +29,20 @@ export default class Home extends React.Component {
   generateRecipe = vote => {
     var data = {
       recipe: this.state.recipe,
-      vote: vote
+      vote: vote,
+      ip: this.state.ip
     };
 
-    if (vote === true){
+    if (vote === true)
       data.vote = true;
-      db.createVote(data);
-    }
-    else if (vote === false){
+    else if (vote === false)
       data.vote = false;
+    else
+      data.vote = null;
+    
+    if (data.recipe !== null)
       db.createVote(data);
-    }
+    
 
     this.setState({generateDisabled: true, recipe: null});
     window.scrollTo(0, 0);
@@ -47,7 +51,7 @@ export default class Home extends React.Component {
     }
     axios.get("https://ramsai.herokuapp.com/predict", config)
           .then(response => {
-            this.setState({recipe: response.data.prediction, generateDisabled: false}); 
+            this.setState({recipe: response.data.prediction, ip: response.data.ip, generateDisabled: false}); 
           })
           .catch(error => console.log(error) );
   }
@@ -89,6 +93,11 @@ export default class Home extends React.Component {
                                     🤮👎
                                 </button>
                             </div>
+                            <div onClick={() => this.generateRecipe("what")} className="card-footer-item is-warning-bc">
+                              <button className="button  is-large is-warning">
+                                  🤔❓
+                              </button>
+                            </div>
                             <div onClick={() => this.generateRecipe(true)} className="card-footer-item is-success-bc">
                               <button className="button  is-large is-success">
                                   🤤👍
@@ -106,7 +115,7 @@ export default class Home extends React.Component {
     const {recipe} = this.state
     return (
         <div className="container has-text-centered">
-          <button className="button is-danger generate-button" onClick={this.generateRecipe} disabled={this.state.generateDisabled} >Generate Recipe</button>
+          {/* <button className="button is-danger generate-button" onClick={this.generateRecipe} disabled={this.state.generateDisabled} >Generate Recipe</button> */}
           <div className='sweet-loading'>
             <ScaleLoader
               css={override}

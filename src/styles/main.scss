@@ -8,7 +8,10 @@
   align-items: center;
   justify-content: center;
   margin-top: 50px;
-  margin-bottom: 50px;
+
+  @media (min-width: 856px) {
+    margin-bottom: 50px;
+  }
 }
 
 .generate-button{
@@ -78,6 +81,11 @@
   .is-danger-bc {
     cursor: pointer;
     background-color: $danger !important;
+  }
+
+  .is-warning-bc {
+    cursor: pointer;
+    background-color: $warning !important;
   }
 
 .is-rounded {

@@ -60,5 +60,8 @@ export const signIn = () => auth.signInWithPopup(googleProvider)
   else return window.location.pathname;
 });
 
-export const createVote = (data) => votes.add(data);
+export const createVote = (data) => {
+  data.time = Date.now();
+  votes.add(data)
+};
 
