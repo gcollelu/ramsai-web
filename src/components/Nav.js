@@ -11,28 +11,21 @@ import logo from '../assets/logo.png';
 class Nav extends React.PureComponent {
 
   state = {
-    open: false,
-    loggedIn: !!db.getUser(),
+    open: false
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location !== nextProps.location)
       this.setState({
-        open: false,
-        loggedIn: !!db.getUser(), // HACK to check if loggedIn state changes
+        open: false
       });
   }
 
   toggle = () => this.setState(({ open }) => ({ open: !open }))
 
-  signIn = () => db.signIn()
-  .then((path) => this.props.history.push(path))
-  .catch(console.error);
 
   render() {
-    const { open, loggedIn } = this.state;
-
-    const username = db.getUser() && db.getUser().displayName;
+    const { open } = this.state;
 
     return (
       <nav className="navbar is-danger has-shadow">
@@ -52,6 +45,9 @@ class Nav extends React.PureComponent {
             <div className="navbar-start">
               <NavLink className="navbar-item" to="/about">
                 About
+              </NavLink>
+              <NavLink className="navbar-item" to="/evaluations">
+                Evaluation
               </NavLink>
             </div>
           </div>

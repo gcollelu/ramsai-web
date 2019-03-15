@@ -25,7 +25,7 @@ export let users;
 /** @type firebase.firestore.CollectionReference */
 export let votes;
 
-export const getUser = () => auth.currentUser;
+export const Helpers = firebase.firestore;
 
 
 export const init = () => firestore.enablePersistence()
@@ -50,15 +50,13 @@ export const init = () => firestore.enablePersistence()
   votes = firestore.collection('votes');
 });
 
-const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-export const signIn = () => auth.signInWithPopup(googleProvider)
-.then(() => {
-  const { from } = decodeQuery(window.location.search);
-  if (from && from.startsWith('/')) return from;
-  else if (window.location.pathname === '/') return '/account';
-  else return window.location.pathname;
-});
+export const getVotes = (cb) => {
+  firestore.collection('votes')
+  .get()
+  .then(snapshot => cb(snapshot.docs.map(doc => doc.data())))
+  
+}
 
 export const createVote = (data) => {
   data.time = Date.now();

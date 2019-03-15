@@ -11,6 +11,7 @@ import {
 
 import Home from './Home';
 import About from './About';
+import Evaluations from './Evaluations';
 import ErrorBoundary from './ErrorBoundary';
 import Nav from './Nav';
 
@@ -31,6 +32,7 @@ const App = () => (
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/about" component={About}/>
+            <Route exact path="/evaluations" component={Evaluations}/>
             <Route render={() => { throw { code: 404 }; }}/>
           </Switch>
         </ErrorBoundary>

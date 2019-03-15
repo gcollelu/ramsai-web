@@ -1,6 +1,8 @@
 @import '~bulma';
 @import 'index';
 
+$family-sans-serif: 'Poppins', -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu', 'Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
+
 .recipe-container {
   display: flex;
   height: 100%;
@@ -94,4 +96,15 @@
 
 .sweet-loading {
   margin: 40px;
+}
+
+.rv-xy-plot {
+  background-color: $danger;
+  border-radius: 10px;
+  
+  font-family: sans-serif;
+
+  .rv-xy-plot__axis__tick {
+    color: #fff !important;
+  }
 }
